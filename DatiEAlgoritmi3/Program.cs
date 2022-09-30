@@ -60,6 +60,7 @@ namespace DatiEAlgoritmi3
             Init();
             Add(new Node("E"));
             Insert(2, new Node("X"));
+            Remove(2);
             Print(head);
         }
 
@@ -84,6 +85,28 @@ namespace DatiEAlgoritmi3
             p.next = newNode;
             newNode.prev = p;
             newNode.next.prev = newNode;
+        }
+
+        public static void Remove(int removePosition)
+        {
+            Node p = head;
+            int i = 0;
+
+            // Sposta il nodo sul nodo precedente che vuoi eliminare 
+            while (p.next != null && i < removePosition - 1)
+            {
+                p = p.next;
+                i++;
+            }
+
+            Node temp = p.next; // Salva il nodo che vuoi eliminare
+
+            p.next = p.next.next; 
+            p.next.prev = p;
+            temp.next = null; // elimina il nodo
+            temp.prev = null; // elimina il nodo
+
+
         }
     }
 }
